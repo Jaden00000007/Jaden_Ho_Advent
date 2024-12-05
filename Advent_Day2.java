@@ -5,23 +5,32 @@ import java.util.Scanner;
 
 public class Advent_Day2 {
     public static void main(String[] args) {
-
-        ArrayList<String> fileData = getFileData("src/Day1Input");
+        ArrayList<String> fileData = getFileData("src/Day1Example");
         int count = 0;
         for(int i = 0; i < fileData.size(); i++){
-            String x = fileData.get(i);
-            for(int j = 0; j < fileData.get(i).length(); j++){
-                int one = Integer.parseInt(x.substring(i, i++));
-                int two = Integer.parseInt(x.substring(i++, i+2));
-                if(one - two == 1 || one - two == 2 || one - two == 3){
-                    count++;
+            String[] x = fileData.get(i).split(" ");
+            int length = x.length;
+            for(int j = 0; j < length--; j++){
+                int one = Integer.parseInt(x[j]);
+                int two = Integer.parseInt(x[j+1]);
+                boolean increasing = false;
+                boolean decreasing  = false;
+                boolean safe = true;
+                if(one > two){
+                    decreasing = true;
                 }
-                else if () {
-                    
+                else if(two > one){
+                    increasing  = true;
+                }
+                else{
+                    safe = false;
+                }
+                if(decreasing && one - two == 1 || one - two == 2 || one - two == 3){
+
                 }
             }
         }
-        System.out.println(fileData.get(0));
+        System.out.println(count);
     }
 
     public static ArrayList<String> getFileData(String fileName) {
