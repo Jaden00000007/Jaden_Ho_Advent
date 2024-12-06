@@ -10,25 +10,34 @@ public class Advent_Day2 {
         for(int i = 0; i < fileData.size(); i++){
             String[] x = fileData.get(i).split(" ");
             int length = x.length;
+            boolean increasing = false;
+            boolean decreasing = false;
+            boolean safe = true;
+            int diff;
             for(int j = 0; j < length--; j++){
                 int one = Integer.parseInt(x[j]);
                 int two = Integer.parseInt(x[j+1]);
-                boolean increasing = false;
-                boolean decreasing  = false;
-                boolean safe = true;
+                diff = one - two;
                 if(one > two){
                     decreasing = true;
                 }
-                else if(two > one){
-                    increasing  = true;
+                else if(two > one) {
+                    increasing = true;
+                }
+                if(decreasing && diff == 1 || diff == 2 || diff == 3){
+                    safe = true;
+                }
+                else if(increasing && diff == -1 || diff == -2 || diff == -3){
+                    safe = true;
                 }
                 else{
                     safe = false;
                 }
-                if(decreasing && one - two == 1 || one - two == 2 || one - two == 3){
-
-                }
             }
+            if(safe){
+                count++;
+            }
+
         }
         System.out.println(count);
     }
