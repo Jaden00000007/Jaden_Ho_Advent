@@ -6,40 +6,32 @@ import java.util.Scanner;
 public class Advent_Day2 {
     public static void main(String[] args) {
         ArrayList<String> fileData = getFileData("src/Day1Example");
-        int count = 0;
-        for(int i = 0; i < fileData.size(); i++){
+        int Tcount = 0;
+        for (int i = 0; i < fileData.size(); i++) {
             String[] x = fileData.get(i).split(" ");
-            int length = x.length;
-            boolean increasing = false;
-            boolean decreasing = false;
-            boolean safe = true;
-            int diff;
-            for(int j = 0; j < length--; j++){
+            boolean increase = false;
+            boolean decrease = false;
+            int count = 0;
+            int leng = x.length;
+            for (int j = 0; j < leng--; j++) {
                 int one = Integer.parseInt(x[j]);
-                int two = Integer.parseInt(x[j+1]);
-                diff = one - two;
-                if(one > two){
-                    decreasing = true;
+                int two = Integer.parseInt(x[j + 1]);
+                if (one - two < 0) {
+                    increase = true;
+                } else if (one - two > 0) {
+                    decrease = true;
                 }
-                else if(two > one) {
-                    increasing = true;
-                }
-                if(decreasing && diff == 1 || diff == 2 || diff == 3){
-                    safe = true;
-                }
-                else if(increasing && diff == -1 || diff == -2 || diff == -3){
-                    safe = true;
-                }
-                else{
-                    safe = false;
+                if (increase && one - two < 0 && one - two > -3) {
+                    count++;
+                } else if (decrease && one - two > 0 && one - two < -3) {
+                    count++;
+                    if (count == 5) {
+                        Tcount++;
+                    }
                 }
             }
-            if(safe){
-                count++;
-            }
-
+            System.out.println(count);
         }
-        System.out.println(count);
     }
 
     public static ArrayList<String> getFileData(String fileName) {
