@@ -11,27 +11,38 @@ public class Advent_Day2 {
             String[] x = fileData.get(i).split(" ");
             boolean increase = false;
             boolean decrease = false;
+            boolean safe = false;
+            boolean first = true;
             int count = 0;
-            int leng = x.length;
-            for (int j = 0; j < leng--; j++) {
+            for (int j = 0; j < x.length-1; j++) {
                 int one = Integer.parseInt(x[j]);
                 int two = Integer.parseInt(x[j + 1]);
-                if (one - two < 0) {
+                if (one - two < 0 && first) {
                     increase = true;
-                } else if (one - two > 0) {
-                    decrease = true;
+                    safe = false;
+                    first = false;
                 }
-                if (increase && one - two < 0 && one - two > -3) {
+                else if (one - two > 0 && first) {
+                    decrease = true;
+                    safe = false;
+                    first = false;
+                }
+                if (increase && (one - two < 0) && (one - two > -3)) {
+                    safe = true;
+                }
+                else if (decrease && (one - two > 0) && (one - two < 3)) {
+                    safe = true;
+                }
+                if(safe){
                     count++;
-                } else if (decrease && one - two > 0 && one - two < -3) {
-                    count++;
-                    if (count == 5) {
-                        Tcount++;
-                    }
                 }
             }
-            System.out.println(count);
+            if (count == x.length-1) {
+                System.out.println(fileData.get(i));
+                Tcount++;
+            }
         }
+        System.out.println(Tcount);
     }
 
     public static ArrayList<String> getFileData(String fileName) {
