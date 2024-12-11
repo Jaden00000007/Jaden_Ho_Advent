@@ -1,8 +1,8 @@
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Advent_Day1 {
@@ -19,13 +19,20 @@ public class Advent_Day1 {
             list1.add(Integer.valueOf(one));
             list2.add(Integer.valueOf(two));
         }
+        int count = 0;
         for (int i = 0; i < fileData.size(); i++){
             Collections.sort(list1);
             Collections.sort(list2);
-            distance += Math.abs(list1.get(i) - list2.get(i));
+            for(int j = 0; j < fileData.size(); j++){
+                if(Objects.equals(list1.get(i), list2.get(j))) {
+                    count++;
+                }
+
+            }
+            distance += list1.get(i) * count;
+            count = 0;
         }
-        System.out.println(list1);
-        System.out.println(list2);
+
         System.out.println(distance);
     }
 
