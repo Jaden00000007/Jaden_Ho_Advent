@@ -5,37 +5,37 @@ import java.util.Scanner;
 
 public class Advent_Day2 {
     public static void main(String[] args) {
-        ArrayList<String> fileData = getFileData("src/Day1Example");
+        ArrayList<String> fileData = getFileData("src/Day1Input");
         int Tcount = 0;
         for (int i = 0; i < fileData.size(); i++) {
             String[] x = fileData.get(i).split(" ");
             boolean increase = false;
             boolean decrease = false;
             boolean safe = false;
-            boolean first = true;
+            boolean first = false;
             int count = 0;
             for (int j = 0; j < x.length-1; j++) {
                 int one = Integer.parseInt(x[j]);
                 int two = Integer.parseInt(x[j + 1]);
-                if (one - two < 0 && first) {
+                if (one - two < 0 && !first) {
                     increase = true;
-                    safe = false;
-                    first = false;
+                    first = true;
                 }
-                else if (one - two > 0 && first) {
+                else if (one - two > 0 && !first) {
                     decrease = true;
-                    safe = false;
-                    first = false;
+                    first = true;
                 }
-                if (increase && (one - two < 0) && (one - two > -3)) {
+                if (increase && (one - two < 0) && (one - two >= -3)) {
                     safe = true;
                 }
-                else if (decrease && (one - two > 0) && (one - two < 3)) {
+                else if (decrease && (one - two > 0) && (one - two <= 3)) {
                     safe = true;
                 }
                 if(safe){
                     count++;
+
                 }
+                safe = false;
             }
             if (count == x.length-1) {
                 System.out.println(fileData.get(i));
