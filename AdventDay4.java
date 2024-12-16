@@ -3,7 +3,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class AdventDay4 {
+public class Advent_Day4  {
     public static void main(String[] args) {
         ArrayList<String> fileData = getFileData("src/Day1Input");
         int count = 0;
@@ -16,7 +16,7 @@ public class AdventDay4 {
                             count++;
                         }
                     }
-                    if(j >= 4){
+                    if(j >= 3){
                         if(row.charAt(j-1) == 'M' && row.charAt(j-2) == 'A' && row.charAt(j-3) == 'S'){
                             count++;
                         }
@@ -26,7 +26,7 @@ public class AdventDay4 {
                             count++;
                         }
                     }
-                    if(i >= 4){
+                    if(i >= 3){
                         if(fileData.get(i-1).charAt(j) == 'M' && fileData.get(i-2).charAt(j)=='A' && fileData.get(i-3).charAt(j)=='S'){
                             count++;
                         }
@@ -36,17 +36,17 @@ public class AdventDay4 {
                             count++;
                         }
                     }
-                    if(j >= 4 && i >= 4){
+                    if(j >= 3 && i >= 3){
                         if(fileData.get(i-1).charAt(j-1) == 'M' && fileData.get(i-2).charAt(j-2)=='A' && fileData.get(i-3).charAt(j-3)=='S'){
                             count++;
                         }
                     }
-                    if(row.length() - j >= 4 && i >= 4){
+                    if(row.length() - j >= 4 && i >= 3){
                         if(fileData.get(i-1).charAt(j+1) == 'M' && fileData.get(i-2).charAt(j+2)=='A' && fileData.get(i-3).charAt(j+3)=='S'){
                             count++;
                         }
                     }
-                    if(j >= 4 && fileData.size() - i >= 4){
+                    if(j >= 3 && fileData.size() - i >= 4){
                         if(fileData.get(i+1).charAt(j-1) == 'M' && fileData.get(i+2).charAt(j-2)=='A' && fileData.get(i+3).charAt(j-3)=='S'){
                             count++;
                         }
@@ -74,4 +74,3 @@ public class AdventDay4 {
         }
     }
 }
-
